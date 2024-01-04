@@ -49,14 +49,12 @@ span {
 }
 
 
-h2 {
+h5 {
     color: #d6c8b4;
 }
 
-
 h2 {
     color: #d6c8b4;
-   ;
 }
 
 
@@ -71,15 +69,10 @@ h2 {
     color: #333;
 }
 
-.header a.navbar-brand:hover,
-.header .nav-link:hover {
-    color: #a56a17;
-}
 
 
 .contents {
     background-color: #f0f0f0;
-    border-left: 5px solid #ff6b81; 
     padding: 20px;
     transition: border-color 0.3s ease;
 }
@@ -100,11 +93,6 @@ h2 {
     color: #333;
     text-decoration: none;
     transition: color 0.3s ease;
-}
-
-
-.contents-list a:hover {
-    color: #ff6b81;
 }
 
 
@@ -206,12 +194,7 @@ h2 {
 .step
 .text {
     text-align: left;
-}
-
-
-.step
-.img {
-    align-items: right;
+    font-size: 34;
 }
 
 .download {
