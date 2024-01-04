@@ -48,7 +48,7 @@
         
             <div class="row">
                 <div class="col-md-6">
-                    <img src="https://www.biovegan.de/wp-content/uploads/2020/08/Vanillekipferl-basic.jpg" class="img-fluid" alt=" Image">
+                    <img src="https://www.biovegan.de/wp-content/uploads/2020/08/Vanillekipferl-basic.jpg" class="img-fluid" alt="Anna Nell Image">
                 </div>
                 <div class="col-md-6">
                     <h2 class="section-title">Vanillekipferl</h2>
@@ -89,7 +89,6 @@
                 var currentValue = parseInt(inputElement.value, 10);
                 if (currentValue < 10) {
                     inputElement.value = currentValue + 1;
-                    updateIngredients(currentValue + 1);
                 }
             }
     
@@ -98,20 +97,9 @@
                 var currentValue = parseInt(inputElement.value, 10);
                 if (currentValue > 1) {
                     inputElement.value = currentValue - 1;
-                    updateIngredients(currentValue - 1);
                 }
             }
-    
-            function updateIngredients(personCount) {
-                var ingredients = document.querySelectorAll('.ingredient-list .ingredient-item span');
-                var multiplier = personCount / 8; // Assuming the original recipe is for 8 persons
-    
-                ingredients.forEach(function(ingredient) {
-                    var parts = ingredient.textContent.split('\t');
-                    var amount = parseFloat(parts[0]) * multiplier;
-                    ingredient.textContent = amount.toFixed(2) + '\t' + parts[1];
-                });
-            }
+
         </script>
 <hr>      
         <div class="ingredient-list">
@@ -155,7 +143,7 @@
             <p>Step 1: Mix flour, almonds, powdered sugar, vanilla sugar and salt in a bowl.</p>
 
             <div class="img"> 
-            <img src="C:\Users\ninab\BLJ2024NiBis\Projects\HTML\2024\KW01\efvuvd\bilder\step1.jpg" alt="Step 1"> </div>
+            <img src="C:\Users\ninab\BLJ2024NiBis\Projects\HTML\2024\KW01\bilder\step1.jpg" alt="Step 1"> </div>
             <p class="text">Step 2: Cut the butter into pieces, add and rub by hand into a crumbly mixture.</p>
 
             <div class="img"> 
