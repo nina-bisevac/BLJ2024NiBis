@@ -3,10 +3,10 @@
 $var = 22
 
 # Wie erstelle ich ein Array?
-$arr1 = @(22, "Mimimi", 2, "hahaha")
+$arr = @(22, "Mimimi", 2, "hahaha")
 
 # Wie erstelle ich ein Mehrdimensionales Array?
-$arr2 = @("Hallo",34),("Bonjour",73),("Ciao",47)
+$arr = @("Hallo",34),("Bonjour",73),("Ciao",47)
 
 # Wie funktionieren bekannte Kontrollstrukturen? (If/Else, Switch, While, DoWhile, For, ForEach)
 #If/Else 
@@ -42,7 +42,7 @@ for($i=0; $i -lt 10; $i++){
    }
 
 #ForEach
-$arr3=@(1, 2, 3, 4 ,5 ,6)
+$arr=@(1, 2, 3, 4 ,5 ,6)
 foreach($element in $arr){
  Write-Host $element
 }
@@ -77,10 +77,12 @@ foreach($element in $arr){
 Get-Date
 
 # Display a list of all the files in the current directory
-ls
+ls 
+Get-ChildItem
 
 # Display a list of all the files in a specific directory
 ls ./OneDrive
+Get-ChildItem ./OneDrive
 
 # Display the contents of a file$
 Get-Content -Path .\myfile.txt
@@ -102,3 +104,4 @@ Remove-Item -Path .\my_file.txt
 
 # Create a new text file and append some text to it
 echo "text" >> myfile.txt
+Write-Output echo "text" >> myfile.txt
