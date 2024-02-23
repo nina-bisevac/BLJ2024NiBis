@@ -5,15 +5,54 @@ $board = @( ('.','.','.'),
  
 $global:playerOneSymbol = 'X'
 $global:playerTwoSymbol = 'O'
-$global:currentPlayer = $global:playerOneSymbol
+ 
+ 
+ 
  
  
  
    
  
-function Get-Winner(){
+function Get-Winner($board){
+    for($a = 0; $a -lt 2; $a++){    
+        $i = $a  
+        if($i -eq 0){$i = 'X'}
+        else{$i = 'O'}
+            for ($row = 0; $row -lt 3; $row++){
+                if ($board[$row][0] -ne '.' -and $board[$row][0] -eq $board[$row][1] -and $board[$row][1] -eq $board[$row][2] -eq $i){
+                return Write-Host "The winner is $i" ;break}
+               
+            }
+            if($i -eq $null){
+                    return
+                }        
+               
  
-}
+            for($col = 0; $col -lt 3; $col++){  
+                if ($board[0][$col] -ne '.' -and $board[0][$col] -eq $board[1][$col] -and $board[1][$col] -eq $board[2][$col] -eq $i){
+                return Write-Host "The winner is $i" ;break}
+            }
+ 
+            if($i -eq $null){
+                    return
+                }
+             
+                if ($board[0][0] -ne '.' -and $board[0][0] -eq $board[1][1] -and $board[1][1] -eq $board[2][2] -eq $i){
+                    return Write-Host "The winner is $i"  ;break}
+            if($i -eq $null){
+                        return
+                    }        
+            }
+                if ($board[0][2] -ne '.' -and $board[0][2] -eq $board[1][1] -and $board[1][1] -eq $board[2][0] -eq $i){
+                    return }
+            if($i -eq $null){
+                        return
+                    }      
+           
+    }
+           
+       
+ 
  
 function Insert-Tile($row, $col){
  
@@ -32,7 +71,6 @@ function  Show-Board(){
 }
  
 function Switch-Player(){
- 
     if ($global:currentPlayer -eq $global:playerOneSymbol) {
         $global:currentPlayer = $global:playerTwoSymbol
  
@@ -42,9 +80,10 @@ function Switch-Player(){
    
     }
 }
-function Run-Game(){
-    Write-Host " Wecome to Tic Tac Toe, let' play!"
  
+function Run-Game(){
+   
+    Write-Host " Wecome to Tic Tac Toe, let' play!"
     $gameOver = $false
     while (-not $gameOver) {
         $row = Read-Host "Player $currentPlayer, choose row (0-2)"
@@ -52,6 +91,8 @@ function Run-Game(){
         Insert-Tile $row $col
         Show-Board
         Switch-Player
+        Get-Winner $board
+       
     }
 }
      
@@ -59,4 +100,3 @@ function Run-Game(){
  
 Clear-Host
 Run-Game -board $board -startingPlayer $playerOneSymbol
- 
