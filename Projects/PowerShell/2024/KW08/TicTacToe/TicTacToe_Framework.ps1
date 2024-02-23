@@ -5,6 +5,7 @@ $board = @( ('.','.','.'),
  
 $global:playerOneSymbol = 'X'
 $global:playerTwoSymbol = 'O'
+$global:count = 1
  
  
  
@@ -18,39 +19,52 @@ function Get-Winner($board){
         $i = $a  
         if($i -eq 0){$i = 'X'}
         else{$i = 'O'}
-            for ($row = 0; $row -lt 3; $row++){
-                if ($board[$row][0] -ne '.' -and $board[$row][0] -eq $board[$row][1] -and $board[$row][1] -eq $board[$row][2] -eq $i){
-                return Write-Host "The winner is $i" ;break}
-               
+        for ($row = 0; $row -lt 3; $row++){
+            if ($board[$row][0] -ne '.' -and $board[$row][0] -eq $board[$row][1] -and $board[$row][1] -eq $board[$row][2] -and $board[$row][2] -eq $i)
+            {
+            return Write-Host "The winner is $i"
+            break
             }
-            if($i -eq $null){
+           
+        }
+        if($i -eq $null){
+                return
+            }        
+           
+ 
+        for($col = 0; $col -lt 3; $col++){  
+            if ($board[0][$col] -ne '.' -and $board[0][$col] -eq $board[1][$col] -and $board[1][$col] -eq $board[2][$col] -and $board[2][$col] -eq $i)
+            {
+                return Write-Host "The winner is $i"
+                break
+            }
+        }
+ 
+        if($i -eq $null){
+                return
+            }
+           
+            if ($board[0][0] -ne '.' -and $board[0][0] -eq $board[1][1] -and $board[1][1] -eq $board[2][2] -and $board[2][2] -eq $i)
+            {
+                return Write-Host "The winner is $i"
+                break
+            }
+        if($i -eq $null){
                     return
                 }        
-               
- 
-            for($col = 0; $col -lt 3; $col++){  
-                if ($board[0][$col] -ne '.' -and $board[0][$col] -eq $board[1][$col] -and $board[1][$col] -eq $board[2][$col] -eq $i){
-                return Write-Host "The winner is $i" ;break}
+       
+       
+            if ($board[0][2] -ne '.' -and $board[0][2] -eq $board[1][1] -and $board[1][1] -eq $board[2][0] -and $board[2][2] -eq $i)
+            {
+                return Write-Host "The winner is $i"
+                break
             }
- 
-            if($i -eq $null){
+        if($i -eq $null){
                     return
-                }
-             
-                if ($board[0][0] -ne '.' -and $board[0][0] -eq $board[1][1] -and $board[1][1] -eq $board[2][2] -eq $i){
-                    return Write-Host "The winner is $i"  ;break}
-            if($i -eq $null){
-                        return
-                    }        
-            }
-                if ($board[0][2] -ne '.' -and $board[0][2] -eq $board[1][1] -and $board[1][1] -eq $board[2][0] -eq $i){
-                    return }
-            if($i -eq $null){
-                        return
-                    }      
+                }      
            
     }
-           
+}          
        
  
  
@@ -92,7 +106,11 @@ function Run-Game(){
         Show-Board
         Switch-Player
         Get-Winner $board
-       
+        $count++
+        if($count -eq 9){
+            Write-Host "It's a tie"
+        }
+ 
     }
 }
      
