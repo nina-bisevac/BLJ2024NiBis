@@ -12,11 +12,15 @@ New-Item -ItemType Directory -Path ".\TestingPurpose\SubFolder2"
 Get-ChildItem -Path ".\TestingPurpose\SubFolder1" | Where-Object { $_.Name -match 'TypeATest(\d+)\.txt' -and [int]::Parse($matches[1]) % 2 -eq 1 } | Move-Item -Destination ".\TestingPurpose\SubFolder2"
 
 # Verschiebe alle Dateien, die eine gerade Zahl im Namen haben, in SubFolder1.
-Get-ChildItem -Path ".\TestingPurpose\SubFolder2" | Where-Object { $_.Name 
+Get-ChildItem -Path ".\TestingPurpose\SubFolder2" | Where-Object { $_.Name -match 'TypeATest(\d+)\.txt' -and [int]::Parse($matches[1]) % 2 -eq 0 } | Move-Item -Destination ".\TestingPurpose\SubFolder1"
 
 
 # Benenne den Ordner SubFolder1 in EvenFilesContainer und SubFolder2 in OddFilesContainer um.
+Rename-Item -Path ".\TestingPurpose\SubFolder1" -NewName "EvenFilesContainer"
+Rename-Item -Path ".\TestingPurpose\SubFolder2" -NewName "OddFilesContainer"
+
 # Erstellen Sie eine Liste aller Dateien, die sich derzeit im Ordner TestingPurpose befinden.
+Get-ChildItem -Path ".\TestingPurpose" -File
 #      Beispiel: MasterFile.txt:
 
 # 		Ab JJJJMMTT HH: MM befinden sich folgende Dateien in TestingPurpose:
@@ -26,5 +30,6 @@ Get-ChildItem -Path ".\TestingPurpose\SubFolder2" | Where-Object { $_.Name
 # 		C:\TestingPurpose\OddFilesContainer\TypeATest99.txt
 
 # Löschen Sie alle Dateien, die mit TypeA beginnen
+Remove-Item -Path ".\TestingPurpose\*\TypeA*" -Include "*.txt" -Force
 
 
