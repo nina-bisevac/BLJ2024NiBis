@@ -27,7 +27,7 @@ $path = "C:\Users\ninab\BLJ2024NiBis\Projects\PowerShell\2024\KW09\Sort-files\Te
 ls C:\Users\ninab
 Get-ChildItem -Path $path -Recurse -File |  
     ForEach-Object {
-        $zahl = ($_.Name -replace '\D','').Trim() 
+        $zahl = ($_.Name -replace '\D','').Trim()   
         $name = $_.Name
         if ($zahl % 2 -eq 0) {
             Move-Item -path $path\SubFolder2\$name -Destination $path\SubFolder1
@@ -37,17 +37,21 @@ Get-ChildItem -Path $path -Recurse -File |
     }
 
 #Benenne den Ordner SubFolder1 in EvenFilesContainer und SubFolder2 in OddFilesContainer um.
-#Rename-Item -Path ".\TestingPurpose\SubFolder1" -NewName "EvenfilesContainer" -Force
-#Rename-Item -Path ".\TestingPurpose\SubFolder2" -NewName "OddFilesContainer" -Force
+Rename-Item -Path "C:\Users\ninab\BLJ2024NiBis\Projects\PowerShell\2024\KW09\Sort-files\TestingPurpose\SubFolder1" -NewName "EvenFilesContainer" -Force
+Rename-Item -Path "C:\Users\ninab\BLJ2024NiBis\Projects\PowerShell\2024\KW09\Sort-files\TestingPurpose\SubFolder2" -NewName "OddFilesContainer" -Force
 
 # Erstellen Sie eine Liste aller Dateien, die sich derzeit im Ordner TestingPurpose befinden.
-
 #      Beispiel: MasterFile.txt:
 # 		Ab JJJJMMTT HH: MM befinden sich folgende Dateien in TestingPurpose:
 # 		C:\TestingPurpose\EvenFilesContainer\TypeBTest2.txt
 # 		.
 # 		.
 # 		C:\TestingPurpose\OddFilesContainer\TypeATest99.txt
+$filesList = Get-ChildItem -path $path -Recurse -File | Select-Object FullName
+Write-Host "Ab $(Get-Date -Format 'dd.MM.yyyy HH:mm') befinden sich folgende Dateien in TestingPurpose:"
+$filesList | ForEach-Object { Write-Host $_.FullName }
+
 
 # Löschen Sie alle Dateien, die mit TypeA beginnen
-#Remove-Item -Path ".\TestingPurpose\EvenFilesContainer\TypeA*.txt" -Force
+Remove-Item -Path "C:\Users\ninab\BLJ2024NiBis\Projects\PowerShell\2024\KW09\Sort-files\TestingPurpose\EvenFilesContainer\TypeA*.txt" -Force
+Remove-Item -Path "C:\Users\ninab\BLJ2024NiBis\Projects\PowerShell\2024\KW09\Sort-files\TestingPurpose\OddFilesContainer\TypeA*.txt" -Force
