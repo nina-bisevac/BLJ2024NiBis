@@ -9,8 +9,12 @@ $window.Height = 450                   # Höhe des Fensters
 $window.FormBorderStyle = "FixedSingle"   # Festlegen des Fensterrahmens
 $window.StartPosition = "CenterScreen"    # Position des Fensters auf dem Bildschirm
 
+
+
+
+
 # Erstellen von Labels für Benutzereingaben
-#$labels = @{} Initialisieren eines leeren Hash-Arrays für Labels
+$labels = @{} #Initialisieren eines leeren Hash-Arrays für Labels
 # Label für den Vornamen
 $labels["Firstname"] = New-Object System.Windows.Forms.Label
 $labels["Firstname"].Text = "Firstname:"    # Beschriftung für Vorname
@@ -60,14 +64,19 @@ $labels["Email"].Location = New-Object System.Drawing.Point(20, 300)
 $labels["Email"].AutoSize = $true
 $window.Controls.Add($labels["Email"])
 
+
+
+
+
+
+
 # Erstellen von Textboxen für Benutzereingaben
-#$textboxes = @{} Initialisieren eines leeren Hash-Arrays für Textboxen
+$textboxes = @{} #Initialisieren eines leeren Hash-Arrays für Textboxen
 # Textbox für den Vornamen
 $textboxes["Firstname"] = New-Object System.Windows.Forms.TextBox
 $textboxes["Firstname"].Location = New-Object System.Drawing.Point(150, 20)   # Positionierung
 $textboxes["Firstname"].Size = New-Object System.Drawing.Size(300, 20)        # Größe der Textbox
 $window.Controls.Add($textboxes["Firstname"])  # Hinzufügen zum Fenster
-
 
 $textboxes["Lastname"] = New-Object System.Windows.Forms.TextBox
 $textboxes["Lastname"].Location = New-Object System.Drawing.Point(150, 60)
@@ -103,6 +112,9 @@ $textboxes["Email"] = New-Object System.Windows.Forms.TextBox
 $textboxes["Email"].Location = New-Object System.Drawing.Point(150, 300)
 $textboxes["Email"].Size = New-Object System.Drawing.Size(300, 20)
 $window.Controls.Add($textboxes["Email"])
+
+
+
 
 
 # Ereignishandler für Textboxen, um die automatisch generierte E-Mail anzuzeigen
@@ -153,22 +165,22 @@ $button_CreateUser.Add_Click({   # Ereignishandler für den Button "Create User"
     $jobtitle = $textboxes["JobTitle"].Text
     $address = $textboxes["Address"].Text
     
+
+
+
+
     # Automatische Generierung von E-Mail und Benutzername
     $email = "$firstname.$lastname@noseryoung.ch"
     $username = "$firstname.$lastname"
-    
-    # Hier sollte der Code zur Erstellung des AD-Benutzers eingefügt werden
-    # New-ADUser -Name "$firstname $lastname" -GivenName $firstname -Surname $lastname -Description $description -Office $office -OfficePhone $phone -Title $jobtitle -StreetAddress $address -EmailAddress $email -SamAccountName $username
-    
-    # Anzeige der automatisch generierten E-Mail auf dem GUI
-    $labels["Email"].Text = "Email: $email"   # Aktualisierung des E-Mail-Labels auf dem GUI
-    
-    Write-Host "Benutzer erstellt mit E-Mail: $email und Benutzername: $username"  # Ausgabe in der Konsole
-})
 
-$button_Close.Add_Click({   # Ereignishandler für den Button "Close"
-    $window.Close()   # Schließen des Hauptfensters
+    # Erstellen des AD-Benutzers
+    New-ADUser -Name "$firstname $lastname" -GivenName $firstname -Surname $lastname -Description $description -Office $office -OfficePhone $phone -Title $jobtitle -StreetAddress $address -EmailAddress $email -SamAccountName $username -AccountPassword (ConvertTo-SecureString "Passwort123!" -AsPlainText -Force) -Enabled $true -PassThru
+
+    # Anzeige der automatisch generierten E-Mail auf dem GUI
+    $labels["Email"].Text = "Email: $email"
+
+    Write-Host "Benutzer erstellt mit E-Mail: $email und Benutzername: $username"
 })
 
 # Anzeigen des Fensters
-$window.ShowDialog()   # Anzeigen des Hauptfensters
+$window.ShowDialog()

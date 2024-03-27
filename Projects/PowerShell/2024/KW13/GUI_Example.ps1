@@ -42,7 +42,5 @@ $button_Close.Add_Click({
 
 })
 
-
-
 $window.ShowDialog()
 
