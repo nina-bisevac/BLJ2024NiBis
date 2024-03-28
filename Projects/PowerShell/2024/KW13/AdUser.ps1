@@ -1,26 +1,21 @@
-# Laden der Windows Forms-Assembly für die GUI-Erstellung
 Add-Type -AssemblyName System.Windows.Forms
 
-# Erstellen des Hauptfensters
 $window = New-Object System.Windows.Forms.Form
-$window.Text = "AD User Creation"     # Titel des Fensters
-$window.Width = 500                    # Breite des Fensters
-$window.Height = 450                   # Höhe des Fensters
-$window.FormBorderStyle = "FixedSingle"   # Festlegen des Fensterrahmens
-$window.StartPosition = "CenterScreen"    # Position des Fensters auf dem Bildschirm
+$window.Text = "AD User Creation"     
+$window.Width = 500                    
+$window.Height = 450                  
+$window.FormBorderStyle = "FixedSingle"   
+$window.StartPosition = "CenterScreen" 
 
 
 
+$labels = @{} 
 
-
-# Erstellen von Labels für Benutzereingaben
-$labels = @{} #Initialisieren eines leeren Hash-Arrays für Labels
-# Label für den Vornamen
 $labels["Firstname"] = New-Object System.Windows.Forms.Label
-$labels["Firstname"].Text = "Firstname:"    # Beschriftung für Vorname
-$labels["Firstname"].Location = New-Object System.Drawing.Point(20, 20)  # Positionierung
-$labels["Firstname"].AutoSize = $true     # Automatische Größenanpassung
-$window.Controls.Add($labels["Firstname"])  # Hinzufügen zum Fenster
+$labels["Firstname"].Text = "Firstname:"   
+$labels["Firstname"].Location = New-Object System.Drawing.Point(20, 20)  
+$labels["Firstname"].AutoSize = $true    
+$window.Controls.Add($labels["Firstname"])  
 
 $labels["Lastname"] = New-Object System.Windows.Forms.Label
 $labels["Lastname"].Text = "Lastname:"
@@ -67,16 +62,12 @@ $window.Controls.Add($labels["Email"])
 
 
 
+$textboxes = @{}
 
-
-
-# Erstellen von Textboxen für Benutzereingaben
-$textboxes = @{} #Initialisieren eines leeren Hash-Arrays für Textboxen
-# Textbox für den Vornamen
 $textboxes["Firstname"] = New-Object System.Windows.Forms.TextBox
-$textboxes["Firstname"].Location = New-Object System.Drawing.Point(150, 20)   # Positionierung
-$textboxes["Firstname"].Size = New-Object System.Drawing.Size(300, 20)        # Größe der Textbox
-$window.Controls.Add($textboxes["Firstname"])  # Hinzufügen zum Fenster
+$textboxes["Firstname"].Location = New-Object System.Drawing.Point(150, 20)   
+$textboxes["Firstname"].Size = New-Object System.Drawing.Size(300, 20)       
+$window.Controls.Add($textboxes["Firstname"])  
 
 $textboxes["Lastname"] = New-Object System.Windows.Forms.TextBox
 $textboxes["Lastname"].Location = New-Object System.Drawing.Point(150, 60)
@@ -114,9 +105,6 @@ $textboxes["Email"].Size = New-Object System.Drawing.Size(300, 20)
 $window.Controls.Add($textboxes["Email"])
 
 
-
-
-
 # Ereignishandler für Textboxen, um die automatisch generierte E-Mail anzuzeigen
 # Hinzufügen eines Ereignishandlers für den Textänderungs-Event der Textbox "Firstname"
 $textboxes["Firstname"].Add_TextChanged({
@@ -138,7 +126,6 @@ function Update-EmailTextBox {
     # Aktualisierung der Textbox "Email" mit der generierten E-Mail-Adresse
     $textboxes["Email"].Text = " $email"
 }
-
 
 
 # Erstellen von Buttons
@@ -164,9 +151,6 @@ $button_CreateUser.Add_Click({   # Ereignishandler für den Button "Create User"
     $phone = $textboxes["Phone"].Text
     $jobtitle = $textboxes["JobTitle"].Text
     $address = $textboxes["Address"].Text
-    
-
-
 
 
     # Automatische Generierung von E-Mail und Benutzername
