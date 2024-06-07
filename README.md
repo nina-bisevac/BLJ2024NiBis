@@ -11,7 +11,8 @@ Das hier ist ein Repository für die Ablage meiner Aufgaben   und Projekte, die 
 
 ## Über mich
 
-Ich bin Nina Bisevac und befinde mich im ersten Lehrjahr als Plattformentwicklerin bei NoserYoung.
+Ich bin Nina Bisevac und befinde mich im ersten Lehrjahr als Plattformentwicklerin bei NoserYoung. Mit meinen 16 Jahren geniesse ich es, in meiner Freizeit nach draussen zu gehen oder das Fitnessstudio zu besuchen. Besonders viel Freude bereitet mir die Arbeit an Projekten im Betrieb, da ich mich gerne neuen Herausforderungen stelle und daran wachse. In diesem Repository findest man einige meiner Arbeiten. Viel Spass beim Anschauen!
+
 
 ## Projekte und Aufgaben
 Alle Projekte und Aufgaben findet man unter dem Ordner "Projects"
